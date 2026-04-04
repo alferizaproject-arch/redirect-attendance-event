@@ -12,7 +12,7 @@
     let pathAndQuery = "";
 
     // Jika ada "voting" di path
-    if (currentUrl.pathname.includes("voting")) {
+    if (currentUrl.pathname.includes("?id")) {
       pathAndQuery = "voting" + currentUrl.search + currentUrl.hash;
     } else {
       // fallback: pakai full path
