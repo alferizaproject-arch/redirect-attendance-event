@@ -10,15 +10,11 @@
     // Ambil query string dan hash dari URL saat ini
     const pathAndQuery = window.location.href.split("?")[1];
 
-    console.log(pathAndQuery);
-
     // Buat URL baru
     const newUrl = newBaseUrl + "?" + pathAndQuery;
 
-    console.log(newUrl);
-
     // Redirect
-    // window.location.href = newUrl;
+    window.location.href = newUrl;
   </script>
 </head>
 <body>
