@@ -4,28 +4,41 @@
   <meta charset="UTF-8">
   <title>Redirecting...</title>
   <script>
-    // Ubah ini saja untuk ganti domain depan
+    // Domain tujuan
     const newBaseUrl = "https://gba-exploration-specs-catalogue.trycloudflare.com/";
-    const url = window.location.href;
-    
-    // Ambil query string dan hash dari URL saat ini
-    let pathAndQuery = "";
-    if (url.includes("voting") {
-      pathAndQuery = `voting?${url.split("?")[1]}`;
-    };
 
-    // Buat URL baru
-    const newUrl = newBaseUrl + pathAndQuery;
+    const currentUrl = new URL(window.location.href);
+
+    let pathAndQuery = "";
+
+    // Jika ada "voting" di path
+    if (currentUrl.pathname.includes("voting")) {
+      pathAndQuery = "voting" + currentUrl.search + currentUrl.hash;
+    } else {
+      // fallback: pakai full path
+      pathAndQuery = currentUrl.pathname + currentUrl.search + currentUrl.hash;
+    }
+
+    const newUrl = newBaseUrl + pathAndQuery.replace(/^\/+/, "");
 
     // Redirect
-    window.location.href = newUrl;
+    window.location.replace(newUrl);
   </script>
 </head>
 <body>
-  <p>Redirecting... <a id="link" href="#">Click here if not redirected</a></p>
+  <p>
+    Redirecting... 
+    <a id="link" href="#">Click here if not redirected</a>
+  </p>
+
   <script>
-    // fallback link
-    document.getElementById('link').href = newBaseUrl + window.location.pathname + window.location.search + window.location.hash;
+    const currentUrl = new URL(window.location.href);
+
+    const fallbackUrl =
+      "https://gba-exploration-specs-catalogue.trycloudflare.com/" +
+      (currentUrl.pathname + currentUrl.search + currentUrl.hash).replace(/^\/+/, "");
+
+    document.getElementById("link").href = fallbackUrl;
   </script>
 </body>
 </html>
