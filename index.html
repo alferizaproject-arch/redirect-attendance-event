@@ -5,13 +5,17 @@
   <title>Redirecting...</title>
   <script>
     // Ubah ini saja untuk ganti domain depan
-    const newBaseUrl = "https://gba-exploration-specs-catalogue.trycloudflare.com/voting";
-
+    const newBaseUrl = "https://gba-exploration-specs-catalogue.trycloudflare.com/";
+    const url = window.location.href;
+    
     // Ambil query string dan hash dari URL saat ini
-    const pathAndQuery = window.location.href.split("?")[1];
+    let pathAndQuery = "";
+    if (url.includes("voting") {
+      pathAndQuery = `voting?${url.split("?")[1]}`;
+    };
 
     // Buat URL baru
-    const newUrl = newBaseUrl + "?" + pathAndQuery;
+    const newUrl = newBaseUrl + pathAndQuery;
 
     // Redirect
     window.location.href = newUrl;
